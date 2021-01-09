@@ -3,6 +3,7 @@ import 'package:get_x_test_app/model/products.dart';
 
 class ShoppingController extends GetxController {
   var products = List<Product>().obs;
+  var data = 0.obs;
 
   @override
   void onInit() {
