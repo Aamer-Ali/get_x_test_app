@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_x_test_app/controller/user_details_controller.dart';
+import 'package:get_x_test_app/view/card_preview_page.dart';
 import 'package:get_x_test_app/view/common/input_address_field.dart';
 import 'package:get_x_test_app/view/common/input_field.dart';
 import 'package:image_picker/image_picker.dart';
@@ -101,10 +102,11 @@ class UserInformationPage extends StatelessWidget {
                   color: Colors.green,
                   textColor: Colors.white,
                   onPressed: () {
-                    // if (_formKey.currentState.validate()) {
-                    //   print('Form Filled');
-                    removeFolder();
-                    // }
+                    if (_formKey.currentState.validate()) {
+                      Get.to(CardPreviewPage());
+                      //   print('Form Filled');
+                      // removeFolder();
+                    }
                   }),
             ],
           ),
@@ -113,28 +115,38 @@ class UserInformationPage extends StatelessWidget {
     );
   }
 
-  getFirstName() {}
+  getFirstName(String val) {
+    user_details_controller.first_name.value = val;
+  }
 
-  getLastName() {}
+  getLastName(String val) {
+    user_details_controller.last_name.value = val;
+  }
 
-  getProfession() {}
+  getProfession(String val) {
+    user_details_controller.profession.value = val;
+  }
 
-  getMobile() {}
+  getMobile(String val) {
+    user_details_controller.mobile.value = val;
+  }
 
-  getEmail() {}
+  getEmail(String val) {
+    user_details_controller.email.value = val;
+  }
 
-  getAddress() {}
+  getAddress(String val) {
+    user_details_controller.address.value = val;
+  }
 
   getImage() async {
     final pickedImage = await picker.getImage(source: ImageSource.camera);
-    if(pickedImage != null)
-      {
-        user_details_controller.profileImagePath.value = pickedImage.path;
-        final directory = await getExternalStorageDirectory().then((value) {
-          File(pickedImage.path).copy('${value.path}/profile_pic/profile.jpeg');
-        }).whenComplete(() {});
-      }
-    else{
+    if (pickedImage != null) {
+      user_details_controller.profileImagePath.value = pickedImage.path;
+      final directory = await getExternalStorageDirectory().then((value) {
+        File(pickedImage.path).copy('${value.path}/profile_pic/profile.jpeg');
+      }).whenComplete(() {});
+    } else {
       print('Image is not selected');
     }
 
