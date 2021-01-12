@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get_x_test_app/controller/sidebar_controller.dart';
 import 'package:get_x_test_app/view/auth_forms/login_page.dart';
 import 'package:get_x_test_app/view/background.dart';
+import 'package:get_x_test_app/view/dashboard_page.dart';
 import 'package:get_x_test_app/view/pages/cart_page.dart';
 import 'package:get_x_test_app/view/pages/shopping_page.dart';
 
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Flutter Demo',
+      // home: DashboardPage(),
       home: Stack(children: [
         Background(),
         LoginPage(),

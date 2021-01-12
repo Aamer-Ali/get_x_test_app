@@ -7,6 +7,7 @@ import 'package:get_x_test_app/controller/user_details_controller.dart';
 import 'package:get_x_test_app/view/card_preview_page.dart';
 import 'package:get_x_test_app/view/common/input_address_field.dart';
 import 'package:get_x_test_app/view/common/input_field.dart';
+import 'package:get_x_test_app/view/dashboard_page.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -103,7 +104,7 @@ class UserInformationPage extends StatelessWidget {
                   textColor: Colors.white,
                   onPressed: () {
                     if (_formKey.currentState.validate()) {
-                      Get.to(CardPreviewPage());
+                      Get.off(DashboardPage());
                       //   print('Form Filled');
                       // removeFolder();
                     }

@@ -43,11 +43,11 @@ class LoginPage extends StatelessWidget {
                   color: Colors.green,
                   textColor: Colors.white,
                   onPressed: () {
-                    savePdf();
-                    // if (_formKey.currentState.validate()) {
-                    //   print('Form Filled');
-                    //   Get.off(UserInformationPage());
-                    // }
+                    // savePdf();
+                    if (_formKey.currentState.validate()) {
+                      print('Form Filled');
+                      Get.off(UserInformationPage());
+                    }
                   }),
             ],
           ),
