@@ -6,6 +6,7 @@ import 'package:get_x_test_app/view/background.dart';
 import 'package:get_x_test_app/view/dashboard_page.dart';
 import 'package:get_x_test_app/view/pages/cart_page.dart';
 import 'package:get_x_test_app/view/pages/shopping_page.dart';
+import 'package:get_x_test_app/view/social_media_page.dart';
 
 import 'view/sidebar/sidebar.dart';
 import 'view/sidebar/sidebar_layout.dart';
@@ -19,11 +20,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Flutter Demo',
-      // home: DashboardPage(),
-      home: Stack(children: [
-        Background(),
-        LoginPage(),
-      ]),
+      home: SocialMediaPage(),
+      // home: Stack(children: [
+      //   Background(),
+      //   LoginPage(),
+      // ]),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         hintColor: Colors.red,
