@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 class dynamicWidget extends StatelessWidget {
   TextEditingController Url = new TextEditingController();
 
+  final String name;
   final int index;
   final Function(dynamicWidget) removeServiceCard;
 
-  dynamicWidget (this.removeServiceCard, {Key key, @required this.index})
+  dynamicWidget (this.removeServiceCard, {Key key, @required this.index, @required this.name})
       : super(key: key);
 
   @override
@@ -17,6 +18,7 @@ class dynamicWidget extends StatelessWidget {
         children: <Widget>[
           Row(
             children: <Widget>[
+              Text(name),
               Container(
                 width: 200,
                 padding: EdgeInsets.fromLTRB(5, 5, 5, 0),
