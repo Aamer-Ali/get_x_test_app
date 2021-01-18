@@ -4,11 +4,15 @@ import 'package:get_x_test_app/view/widgets/dynamic_widget.dart';
 
 class SocialMediaPage extends StatefulWidget {
   @override
-  _SocialMediaPageState createState() => _SocialMediaPageState();
+  SocialMediaPageState createState() => SocialMediaPageState();
 }
 
-class _SocialMediaPageState extends State<SocialMediaPage> {
+class SocialMediaPageState extends State<SocialMediaPage> {
   var dynamicList = List<dynamicWidget>();
+  final stateKey = new GlobalKey<SocialMediaPageState>();
+  bool isSwitched = false;
+
+  // List<CardData> _listItems = List() ;
 
   List<CardData> _listItems = [
     CardData(1, "Facebook"),
@@ -23,6 +27,20 @@ class _SocialMediaPageState extends State<SocialMediaPage> {
     CardData(10, "Telegram"),
   ];
 
+  // void addListData(){
+  //
+  //   _listItems.add(CardData(1, "Facebook"));
+  //   _listItems.add(CardData(2, "Youtube"));
+  //   _listItems.add(CardData(3, "Instagram"));
+  //   _listItems.add(CardData(4, "Snapchat"));
+  //   _listItems.add(CardData(5, "LinkedIn"));
+  //   _listItems.add(CardData(6, "Reddit"));
+  //   _listItems.add(CardData(7, "Gmail"));
+  //   _listItems.add(CardData(8, "Yahoo"));
+  //   _listItems.add(CardData(9, "Outlook"));
+  //   _listItems.add(CardData(10, "Telegram"));
+  // }
+
   var _listItemsAdded = List();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -32,11 +50,48 @@ class _SocialMediaPageState extends State<SocialMediaPage> {
     });
   }
 
+  void addServiceCard(String mCode) {
+    setState(() {
+      switch (mCode) {
+        case "sma_facebook":
+          _listItems.add(CardData(1, "Facebook"));
+          break;
+        case "sma_youtube":
+          _listItems.add(CardData(2, "Youtube"));
+          break;
+        case "sma_instagram":
+          _listItems.add(CardData(3, "Instagram"));
+          break;
+        case "sma_snapchat":
+          _listItems.add(CardData(4, "Snapchat"));
+          break;
+        case "sma_linedin":
+          _listItems.add(CardData(5, "LinkedIn"));
+          break;
+        case "sma_reddit":
+          _listItems.add(CardData(6, "Reddit"));
+          break;
+        case "sma_gmail":
+          _listItems.add(CardData(7, "Gmail"));
+          break;
+        case "sma_yahoo":
+          _listItems.add(CardData(8, "Yahoo"));
+          break;
+        case "sma_outlook":
+          _listItems.add(CardData(9, "Outlook"));
+          break;
+        case "sma_telegram":
+          _listItems.add(CardData(10, "Telegram"));
+          break;
+        default:
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    print(_listItemsAdded.length);
-    for (int i = 0; i < _listItemsAdded.length; i++)
-      print("${_listItemsAdded[i]} In List Item added");
+
+
     return Scaffold(
       key: _scaffoldKey,
       body: SingleChildScrollView(
@@ -54,7 +109,8 @@ class _SocialMediaPageState extends State<SocialMediaPage> {
                     mainAxisSpacing: 20,
                     crossAxisSpacing: 20,
                     crossAxisCount: 5,
-                    children: List.generate(_listItems.length, (index) {
+                    children: List.generate(
+                        _listItems == null ? 0 : _listItems.length, (index) {
                       // return Container(
                       //   _listItems[index], (){
                       //   setState(() {
@@ -66,35 +122,35 @@ class _SocialMediaPageState extends State<SocialMediaPage> {
                       return InkWell(
                         onTap: () {
                           String code;
-                          switch (index) {
-                            case 0:
+                          switch (_listItems[index]._name) {
+                            case "Facebook":
                               code = "sma_facebook";
                               break;
-                            case 1:
+                            case "Youtube":
                               code = "sma_youtube";
                               break;
-                            case 2:
+                            case "Instagram":
                               code = "sma_instagram";
                               break;
-                            case 3:
+                            case "Snapchat":
                               code = "sma_snapchat";
                               break;
-                            case 4:
+                            case "LinkedIn":
                               code = "sma_linedin";
                               break;
-                            case 5:
+                            case "Reddit":
                               code = "sma_reddit";
                               break;
-                            case 6:
+                            case "Gmail":
                               code = "sma_gmail";
                               break;
-                            case 7:
+                            case "Yahoo":
                               code = "sma_yahoo";
                               break;
-                            case 8:
+                            case "Outlook":
                               code = "sma_outlook";
                               break;
-                            case 9:
+                            case "Telegram":
                               code = "sma_telegram";
                               break;
                             default:
@@ -104,6 +160,7 @@ class _SocialMediaPageState extends State<SocialMediaPage> {
                               removeServiceCard,
                               index: dynamicList.length,
                               name: code,
+                              mKey: stateKey,
                             ));
                             _listItems.removeAt(index);
                           });
@@ -150,13 +207,20 @@ class _SocialMediaPageState extends State<SocialMediaPage> {
               RaisedButton(
                 onPressed: () {
                   setState(() {
-                    var Url = [];
-                    dynamicList.forEach((widget) => Url.add(widget.Url.text));
-                    setState(() {});
-                    print(Url.length);
-                    for (var item in Url) {
-                      print(item);
-                    }
+
+                    List<SubmitData> submitData = List();
+                    dynamicList.forEach((widget) => submitData.add(SubmitData(widget.name,widget.Url.text,widget.isSwitched)));
+
+                    for (int i = 0; i < submitData.length; i++)
+                      print("${submitData[i].code} -  ${submitData[i].Url} - ${submitData[i].isOn}");
+
+                    // var Url = [];
+                    // dynamicList.forEach((widget) => Url.add(widget.Url.text));
+                    // setState(() {});
+                    // print(Url.length);
+                    // for (var item in Url) {
+                    //   print(item);
+                    // }
                   });
                 },
                 child: Text("Submit Form"),
@@ -172,10 +236,15 @@ class _SocialMediaPageState extends State<SocialMediaPage> {
 class CardData {
   int _id;
   String _name;
-
   //todo Add variable for image path.
-
   CardData(this._id, this._name);
+}
+
+class SubmitData{
+  String code,Url;
+  bool isOn;
+
+  SubmitData(this.code, this.Url, this.isOn);
 }
 
 // _listItems
