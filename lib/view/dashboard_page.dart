@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_x_test_app/view/card_preview_page.dart';
 import 'package:get_x_test_app/view/dashboard_grid.dart';
+import 'package:get_x_test_app/view/social_media_page.dart';
 
 class DashboardPage extends StatelessWidget {
   @override
@@ -59,6 +60,9 @@ class DashboardPage extends StatelessWidget {
                           onTap: () {
                             if (item._id == 1) {
                               Get.to(CardPreviewPage());
+                            }
+                            if (item._id == 3) {
+                              Get.to(SocialMediaPage());
                             }
                           },
                           splashColor: Colors.blue,

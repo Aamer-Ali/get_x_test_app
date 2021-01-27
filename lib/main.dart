@@ -20,11 +20,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Flutter Demo',
-      home: SocialMediaPage(),
-      // home: Stack(children: [
-      //   Background(),
-      //   LoginPage(),
-      // ]),
+      // home: SocialMediaPage(),
+      home: Stack(children: [
+        Background(),
+        LoginPage(),
+      ]),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         hintColor: Colors.red,
